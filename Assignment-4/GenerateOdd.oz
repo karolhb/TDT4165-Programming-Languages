@@ -7,9 +7,13 @@ fun {GenerateOdd S E}
     end
 end
 
-fun {Product Xs A}
-    case Xs
-    of X|Xr then {Product Xr A*X}
-    [] nil then A
+fun {Product S}
+    fun {ProductInner S A}
+        case S
+        of H|T then {ProductInner T A*H}
+        [] nil then A
+        end
     end
+in
+    {ProductInner S 1}
 end
