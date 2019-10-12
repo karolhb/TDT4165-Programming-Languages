@@ -1,10 +1,16 @@
 fun {GenerateOdd S E}
-    if E-S < 0 then nil
-    elseif S mod 2 \= 0 then
-        S|{GenerateOdd S+2 E}
+  fun {GenerateStream CurrentVal End JumpSize}
+    if CurrentVal > End then
+      nil
     else
-        S+1|{GenerateOdd S+3 E}
+      CurrentVal|{GenerateStream CurrentVal+JumpSize End JumpSize}
     end
+  end in
+  if S mod 2 == 1 orelse S mod 2 == ~1 then 
+    {GenerateStream S E 2}
+  else
+    {GenerateStream S+1 E 2}
+  end
 end
 
 fun {Product S}
@@ -16,4 +22,11 @@ fun {Product S}
     end
 in
     {ProductInner S 1}
+end
+
+fun {FirstDigits Num Count}
+    if Num >= {Pow 10 Count} then
+        {FirstDigits Num div 10 Count}
+    else Num
+    end
 end

@@ -1,8 +1,15 @@
 fun lazy {LazyGenerateOdd S E}
-    if E-S < 0 then nil
-    elseif S mod 2 \= 0 then
-        S|{LazyGenerateOdd S+2 E}
+  fun lazy {GenerateStream CurrentVal End JumpSize}
+    if CurrentVal > End then
+      nil
     else
-        S+1|{LazyGenerateOdd S+3 E}
+      CurrentVal|{GenerateStream CurrentVal+JumpSize End JumpSize}
     end
+  end 
+in
+  if S mod 2 == 1 orelse S mod 2 == ~1 then 
+    {GenerateStream S E 2}
+  else
+    {GenerateStream S+1 E 2}
+  end
 end
