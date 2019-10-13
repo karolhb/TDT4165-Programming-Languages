@@ -13,12 +13,13 @@ define
     {Show {GenerateOdd ~1 10}}
 
     % Task 2
-    {ShowInfo "\nTask 2"}
+    {ShowInfo "\nTask 2\nProduct of the list [1 2 3 4]:"}
     {System.show {Product [1 2 3 4]}}
 
     % Task 3
     local Xs N = 3 in
         thread Xs = {GenerateOdd 0 1000} end % Producer thread
+        % Showing only the first three digits
         thread {ShowInfo "\nTask 3\nFirst "#N#" digits:"} {Show {FirstDigits {Product Xs} N}} end % Consumer thread
     end
 
@@ -27,13 +28,14 @@ define
     % Task 4   
     local Xs N = 3 in
         thread Xs = {LazyGenerateOdd 0 1000} end % Producer thread
+        % Showing only the first three digits
         thread {ShowInfo "\nTask 4\nFirst "#N#" digits:"} {Show {FirstDigits {Product Xs} N}} end % Consumer thread
     end
 
     % Task 5
     %% a)
     local HammerTime B StartTime EndTime in
-        {Time.time StartTime}
+        {Time.time StartTime} % Using the Time module to calculate time elapsed
         HammerTime = {HammerFactory}
         B = HammerTime.2.2.2.1
         {Time.time EndTime}

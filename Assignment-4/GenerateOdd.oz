@@ -15,8 +15,8 @@ end
 
 fun {Product S}
     fun {ProductInner S A}
-        case S
-        of H|T then {ProductInner T A*H}
+        case S of H|T then 
+            {ProductInner T A*H}
         [] nil then A
         end
     end
@@ -24,9 +24,11 @@ in
     {ProductInner S 1}
 end
 
+% Utility function which shows the Count first digits of Num
 fun {FirstDigits Num Count}
     if Num >= {Pow 10 Count} then
         {FirstDigits Num div 10 Count}
-    else Num
+    else 
+        Num
     end
 end

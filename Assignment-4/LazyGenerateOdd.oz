@@ -1,3 +1,4 @@
+% Lazy version of the GenerateOdd function
 fun lazy {LazyGenerateOdd S E}
   fun lazy {GenerateStream CurrentVal End JumpSize}
     if CurrentVal > End then
