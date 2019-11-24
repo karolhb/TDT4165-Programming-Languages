@@ -1,0 +1,5 @@
+payment(0, []).
+payment(Sum, [coin(Coin, Value, Amount)|T]) :-
+    Coin in 0..Amount,
+    Sum #= Coin*Value + NextSum,
+    payment(NextSum, T).
